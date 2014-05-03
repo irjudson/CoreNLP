@@ -190,11 +190,11 @@ public class XMLOutputter {
         /**
          * Adds sentiment as an attribute of this sentence.
          */
-        Tree sentimentTree = sentence.get(SentimentCoreAnnotations.AnnotatedTree.class);
+        Tree sentimentTree = sentence.get(SentimentCoreAnnotations.SentimentTreeAnnotation.class);
         if (sentimentTree != null) {
           int sentiment = RNNCoreAnnotations.getPredictedClass(sentimentTree);
           sentElem.addAttribute(new Attribute("sentimentValue", Integer.toString(sentiment)));
-          String sentimentClass = sentence.get(SentimentCoreAnnotations.ClassName.class);
+          String sentimentClass = sentence.get(SentimentCoreAnnotations.SentimentAnnotation.class);
           sentElem.addAttribute(new Attribute("sentiment", sentimentClass.replaceAll(" ", "")));
         }
 

@@ -23,9 +23,9 @@ import edu.stanford.nlp.util.CoreMap;
  * ParserAnnotator.
  * <br>
  * The tree will be attached to each sentence in the
- * SentencesAnnotation via the SentimentCoreAnnotations.AnnotatedTree
+ * SentencesAnnotation via the SentimentCoreAnnotations.TreeAnnotation
  * annotation.  The class name for the top level class is also set
- * using the SentimentCoreAnnotations.ClassName annotation.
+ * using the SentimentCoreAnnotations.SentimentAnnotation annotation.
  * <br>
  * The reason the decision was made to do the binarization in the
  * ParserAnnotator is because it may require specific options set in
@@ -65,9 +65,9 @@ public class SentimentAnnotator implements Annotator {
         Tree collapsedUnary = transformer.transformTree(binarized);
         SentimentCostAndGradient scorer = new SentimentCostAndGradient(model, null);
         scorer.forwardPropagateTree(collapsedUnary);
-        sentence.set(SentimentCoreAnnotations.AnnotatedTree.class, collapsedUnary);
+        sentence.set(SentimentCoreAnnotations.SentimentTreeAnnotation.class, collapsedUnary);
         int sentiment = RNNCoreAnnotations.getPredictedClass(collapsedUnary);
-        sentence.set(SentimentCoreAnnotations.ClassName.class, SentimentUtils.sentimentString(model, sentiment));
+        sentence.set(SentimentCoreAnnotations.SentimentAnnotation.class, SentimentUtils.sentimentString(model, sentiment));
       }
     } else {
       throw new RuntimeException("unable to find sentences in: " + annotation);

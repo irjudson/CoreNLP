@@ -95,7 +95,6 @@
            source="${compile.source}"
            target="${compile.target}"
            fork="true"
-           memorymaximumsize="2g"
            includeantruntime="false">
         <classpath refid="classpath" />
       <!-- <compilerarg value="-Xmaxerrs"/>
@@ -176,7 +175,7 @@
   <!-- Use "jvmarg" to pass arguments to the VM, use "arg" to pass cmdline args to the class -->
   <target name="run" depends="classpath">
     <java classname="${run.class}" fork="true" jvm="java">
-      <jvmarg value="-Xmx2g"/>
+      <!-- <jvmarg value="-Xmx2g"/> -->
       <jvmarg value="-server"/>
       <classpath>
 	<path refid="classpath"/>
@@ -189,7 +188,7 @@
   <!-- See http://nlp.stanford.edu/javanlp/did_you_know/eclipse_debug.html for example -->
   <target name="run-debug" depends="classpath">
     <java classname="${run.class}" fork="true" jvm="java">
-      <jvmarg value="-Xmx2g"/>
+      <!-- <jvmarg value="-Xmx2g"/> -->
       <!-- Following args should cause this to freeze and wait for debug attach -->
       <jvmarg value="-Xdebug"/>
       <jvmarg value="-Xnoagent"/>
